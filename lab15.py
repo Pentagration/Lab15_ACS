@@ -79,27 +79,28 @@ import datetime
 def month(): # asks user for the month and displays the month
 
   month = input("Enter the number of month you were born ")
-  print calendar.month(1, month, 1)
+  year = input("Enter the year you were born ")
+  print (calendar.month(year,month))
 
 def birthday(): # this will calculate the day until your next birthday
 
   month = input("\nEnter the number of month you were born ")
   day = input("Enter the number of day you were born ")
-  year = input("Enter the number of year you were born ")
 
-  birthday = datetime.datetime(year, month, day) #only works when it has two datetime
-  print ("\nThat was a long time ago... ") + str(birthday)
-  time.sleep(2)
+  currentDay = datetime.datetime.now()
+  birthday = datetime.datetime(currentDay.year, month, day) #only works when it has two datetime
 
   print("Lets calculate how many more days until your birthday!")
   time.sleep(2)
   print("\ncalculating...")
   time.sleep(3)
 
-  birthday2 = datetime.datetime(1 + year, month, day)
-  currentDay = datetime.datetime.now()
+  birthday2 = datetime.datetime(1 + currentDay.year, month, day)
 
-  ppp = abs(max(birthday, birthday2) - currentDay).days / 60 *2
+  if currentDay > birthday:
+      ppp = (birthday2 - currentDay).days + 1
+  else:
+      ppp = (birthday - currentDay).days + 1
 
   print ("Looks like your birthday will be in " + str(ppp) + " days!")
 
@@ -108,7 +109,17 @@ def birthday(): # this will calculate the day until your next birthday
 def declaration():
 
   import datetime
+  import calendar
   #Monday July 4th, 1776)
-  x = datetime.datetime(1900, 7, 4, 12)
+  #x = datetime.datetime(1900, 7, 4, 12)
 
-  print(x.strftime("Monday "+ "%B %dth, %Y"))   #for some reason strftime wont go before the year 1900
+  #print(x.strftime("Monday "+ "%B %dth, %Y"))   #for some reason strftime wont go before the year 1900
+
+  print ("Write out the full name of a day.")
+  month = input("Input a month (the number): ")
+  day = input("Input a day (the number): ")
+  year = input("Input a year: ")
+  wDay = calendar.weekday(year, month, day)
+  wDay = calendar.day_name[wDay]
+  wMonth = calendar.month_name[month]
+  print str(wDay) + " " + str(wMonth) + " " + str(day) + ", " + str(year)
