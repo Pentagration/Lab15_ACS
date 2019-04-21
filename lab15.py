@@ -30,7 +30,6 @@ def roll(): #players first roll
 
     print("Congratulations you WIN! you rolled a " + str(sum))
     return 0
-    break
 
   elif (sum == 2 or sum == 3 or sum == 12):
 
@@ -55,7 +54,7 @@ def secondRoll(point): #player's second roll and so on
 
       break
 
-    elif roll() == 7:
+    elif diceRoll() == 7:
       print("You rolled a 7, you lose play thanks for playing!! ")
       secondRoll = 0
 
